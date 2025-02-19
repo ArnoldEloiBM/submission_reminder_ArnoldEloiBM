@@ -55,9 +55,12 @@ function check_submissions() {
     local submissions_file=$1
     echo "Checking submissions in $submissions_file..."
 
+# Ensure the file exists
     if [ ! -f "$submissions_file" ]; then
          echo "Error: Submissions file not found!"
          exit 1
+
+    fi
 
     # Skip the header and iterate through the lines
     while IFS=, read -r student assignment status; do
@@ -75,7 +78,7 @@ function check_submissions() {
 EOF
 
 # Create reminder.sh
-echo "Creating reminder.sh"
+echo "Creating reminder.sh..."
 cat << 'EOF' > "$main_dir/app/reminder.sh"
 #!/bin/bash
 
